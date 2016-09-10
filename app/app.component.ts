@@ -1,7 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
+declare var google: any;
 
 @Component({
     selector: 'my-app',
-    template: '<h1>My First Angular 2 App</h1>'
+    templateUrl: 'app/app.html'
+	styleUrls: ['app/app.css']
 })
-export class AppComponent { }
+export class AppComponent implements OnInit{ 
+
+	map: any;
+	
+	ngOnInit(): void {
+var mapProp = {
+            center: new google.maps.LatLng(52.2316019, 19.5103393),
+            zoom: 7,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+      var map = new google.maps.Map(document.getElementById("map"), mapProp);
+	}
+	
+}
