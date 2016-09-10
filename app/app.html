@@ -1,6 +1,13 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-8" style="background-color:red" id="map"></div>
-		<div class="col-md-4" ><!-- controls here --></div>
+		<div class="col-md-4" >
+			<div class="form-group">
+				<textarea [(ngModel)]="query" id="queryarea" class="form-control" rows="3"></textarea>
+			</div>
+			<div class="form-group">
+				<button class="btn" (click)="executeQuery()">Execute</button>
+			</div>
+		</div>
 	</div>
 </div>
