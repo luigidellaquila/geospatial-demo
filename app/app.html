@@ -1,13 +1,34 @@
 <div class="container">
+
 	<div class="row">
-		<div class="col-md-8" style="background-color:red" id="map"></div>
-		<div class="col-md-4" >
+		<div class="col-md-6" >
 			<div class="form-group">
 				<textarea [(ngModel)]="query" id="queryarea" class="form-control" rows="3"></textarea>
 			</div>
 			<div class="form-group">
-				<button class="btn" (click)="executeQuery()">Execute</button>
+				<button class="btn" (click)="executeQuery()">Execute Query</button>
 			</div>
 		</div>
+		<div class="col-md-4" >
+			<div class="form-group">
+				<label for="lat">Latitude</label>
+				<input type="text" [(ngModel)]="lat" class="form-control"/>
+			</div>
+			<div class="form-group">
+				<label for="lon">Longitude</label>
+				<input type="text" [(ngModel)]="lon" class="form-control"/>
+			</div>
+			<div class="form-group">
+				<label for="personName">Person Name</label>
+				<input type="text" [(ngModel)]="personName" class="form-control"/>
+			</div>
+		</div>
+		<div class="col-md-2" >
+				<button class="btn" >Add Person</button>
+				<button class="btn" >Add Edge</button>
+				<button class="btn" (click)="test()" >test</button>
+		</div>
+	<div class="col-md-12" style="background-color:red" id="map"></div>
+
 	</div>
 </div>
