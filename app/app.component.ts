@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit, NgZone} from '@angular/core';
 import { Headers, Http } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
@@ -25,7 +25,7 @@ export class AppComponent implements OnInit{
   lon: string;
   personName: string;
 
-  constructor(private http: Http) { }
+  constructor(private http: Http, private zone: NgZone) { }
 
 	ngOnInit(): void {
     var controller = this;
@@ -37,34 +37,40 @@ export class AppComponent implements OnInit{
       var map = new google.maps.Map(document.getElementById("map"), mapProp);
 
       map.addListener("click", function(point: any){
-        console.log(controller.personName)
-        console.log(point)
-        console.log(point.latLng)
-        console.log(point.latLng.lat())
-        console.log(point.latLng.lng())
-        alert(controller.lat)
-        controller.lat = ""+point.latLng.lat();
-        controller.lon = ""+point.latLng.lng();
+        controller.zone.run(()=> {
+          controller.lat = ""+point.latLng.lat();
+          controller.lon = ""+point.latLng.lng();
+        });
       });
 	}
 
-
-
 	executeQuery(): void {
-    this.lat = "foo";
-    var url = this.orientUrl + "sql/-/-1"
+    this.orientCommand(
+      this.query,
+      function(data){ console.log(data) },
+      function(e){console.log(e)}
+    )
+	}
+
+  orientCommand(statement: string, success: (data: any) => void, error: (err: any) => void): void{
+    var url = this.orientUrl + "sql/-/100"
 
     var headers = new Headers();
     headers.append("Authorization", "Basic " + btoa(this.orientUser+":"+this.orientPassword));
-    this.http.post(url, JSON.stringify({
-          "command": this.query
-        }), {headers: headers}).toPromise()
-         .then(function(data: any){console.log(data)})
-        //  .catch(function(e){console.log(e)});
-
-	}
-
-  test(): void {
-    console.log(this.lat)
+    this.http.post(
+                  url,
+                  JSON.stringify({
+                    "command": this.query
+                  }),
+                  {headers: headers}
+        ).toPromise()
+         .then(success)
+         .catch(error);
   }
+
+
+  addPerson(): void{
+
+  }
+
 }
