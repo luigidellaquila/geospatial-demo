@@ -14,8 +14,8 @@ export class OrientService {
     var url = this.url + "sql/-/-1"
     var headers = new Headers();
     headers.append("Authorization", "Basic " + btoa(this.username+":"+this.password));
-    this.http.post(
-      url,
+
+    this.http.post(url,
       JSON.stringify({
         "command": statement
       }),
