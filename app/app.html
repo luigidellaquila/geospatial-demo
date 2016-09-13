@@ -1,41 +1,41 @@
 <div class="container">
 
-	<div class="row">
-		<div class="col-md-6" >
-      <div class="form-group" >
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
         <button class="btn" (click)="drawMap()">Redraw Map</button>
-        <button class="btn" (click)="loadPeople()" >Display People</button>
-        <button class="btn" (click)="loadEdges()" >Display Friendship</button>
-        <button class="btn" (click)="loadPOIs()" >Display POIs</button>
-        <button class="btn" (click)="loadParks()" >Display Parks</button>
+        <button class="btn" (click)="loadPeople()">Display People</button>
+        <button class="btn" (click)="loadEdges()">Display Friendship</button>
+        <button class="btn" (click)="loadPOIs()">Display POIs</button>
+        <button class="btn" (click)="loadParks()">Display Parks</button>
       </div>
 
       <div class="form-group">
-				<textarea [(ngModel)]="query" id="queryarea" class="form-control" rows="3"></textarea>
-			</div>
-			<div class="form-group">
-				<button class="btn" (click)="executeQuery()">Execute Query</button>
-			</div>
-		</div>
-		<div class="col-md-4" >
-			<div class="form-group">
-				<label for="lat">Latitude</label>
-				<input type="text" id="lat" [(ngModel)]="lat" class="form-control"/>
-			</div>
-			<div class="form-group">
-				<label for="lon">Longitude</label>
-				<input type="text" id="lon" [(ngModel)]="lon" class="form-control"/>
-			</div>
-			<div class="form-group">
-				<label for="personName">Person Name</label>
-				<input type="text" id="personName" [(ngModel)]="personName" class="form-control"/>
-			</div>
-		</div>
-		<div class="col-md-2" >
-				<button class="btn" (click)="createPerson()">Add Person</button>
-				<button class="btn" [class.btn-info]="addingEdge" (click)="startAddEdge()" >Add Edge</button>
-		</div>
-	<div class="col-md-12" id="map"></div>
+        <textarea [(ngModel)]="query" id="queryarea" class="form-control" rows="3"></textarea>
+      </div>
+      <div class="form-group">
+        <button class="btn" (click)="executeQuery()">Execute Query</button>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="lat">Latitude</label>
+        <input type="text" id="lat" [(ngModel)]="lat" class="form-control"/>
+      </div>
+      <div class="form-group">
+        <label for="lon">Longitude</label>
+        <input type="text" id="lon" [(ngModel)]="lon" class="form-control"/>
+      </div>
+      <div class="form-group">
+        <label for="personName">Person Name</label>
+        <input type="text" id="personName" [(ngModel)]="personName" class="form-control"/>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <button class="btn" (click)="createPerson()">Add Person</button>
+      <button class="btn" [class.btn-info]="addingEdge" (click)="startAddEdge()">Add Edge</button>
+    </div>
+    <div class="col-md-12" id="map"></div>
 
-	</div>
+  </div>
 </div>

@@ -1,5 +1,5 @@
 import { Component, OnInit, NgZone} from '@angular/core';
-import { Headers, Http } from '@angular/http';
+// import { Headers, Http } from '@angular/http';
 import { OrientService } from "./orient.service"
 
 import 'rxjs/add/operator/toPromise';
@@ -24,7 +24,7 @@ export class AppComponent implements OnInit{
 
   fromMarker:any;
 
-  constructor(private http: Http, private zone: NgZone, private orient: OrientService) { }
+  constructor( private zone: NgZone, private orient: OrientService) { }
 
 	ngOnInit(): void {
     this.drawMap();
@@ -106,7 +106,7 @@ export class AppComponent implements OnInit{
       (data)=>{
         let body = data.json();
         let result = body.result;
-        result.forEach((x) => {
+        result.forEach((x:any) => {
           this.addEdgeToMap(x.fromLat, x.fromLng, x.toLat, x.toLng);
         })
       },
@@ -187,10 +187,10 @@ export class AppComponent implements OnInit{
   }
 
   addShapeToMap(data:any){
-    let coordinates = [];
+    let coordinates:any[] = [];
     let location = data.location;
     console.log(location.coordinates)
-    location.coordinates[0].forEach(x => {
+    location.coordinates[0].forEach((x:any) => {
       coordinates.push({lat:x[1], lng:x[0]});
     });
     let controller = this;
