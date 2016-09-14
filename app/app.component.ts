@@ -26,32 +26,37 @@ export class AppComponent implements OnInit{
   constructor( private zone: NgZone, private orient: OrientService) { }
 
 	ngOnInit(): void {
-    this.drawMap();
-    this.loadPeople()
-    this.loadEdges()
-    this.loadPOIs()
-    this.loadParks()
+    // this.drawMap();
+    // this.loadPeople()
+    // this.loadEdges()
+    // this.loadPOIs()
+    // this.loadParks()
 	}
 
 	drawMap(){
-    var controller = this;
-    let mapProp = {
-      center: new google.maps.LatLng(52.231807953759706, 21.013154983520508),
-      zoom: 16,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    };
+    //TODO
+  }
 
-    controller.map = new google.maps.Map(document.getElementById("map"), mapProp);
-    controller.map.addListener("click", function(point: any){
-      controller.zone.run(()=> {
-        controller.lat = point.latLng.lat();
-        controller.lon = point.latLng.lng();
-      });
-    });
+  createPerson(): void{
+    // TODO
+  }
+
+  createEdge(from:any, to:any): void{
+    // TODO
   }
 
 
-	executeQuery(): void {
+
+
+
+
+  /* ----------------------------------------------------------------------------- */
+  /* ----------------------------------------------------------------------------- */
+
+
+
+
+  executeQuery(): void {
     let controller = this;
     this.orient.command(
       this.query,
@@ -71,34 +76,6 @@ export class AppComponent implements OnInit{
       },
       function(e){console.log(e)}
     )
-	}
-
-
-
-  createPerson(): void{
-    var location = {
-      "@class": "OPoint",
-      coordinates: [this.lon, this.lat]
-    }
-
-    var queryString = `insert into Person 
-                       set name = '${this.personName}', 
-                       location = ${JSON.stringify(location)}`;
-
-    this.orient.command(queryString, (res)=>{
-      let body = res.json();
-      let person = body.result[0];
-      this.addPersonToMap(person)
-    }, (e)=>{console.log(e)})
-  }
-
-  createEdge(from:any, to:any): void{
-    this.orient.command(
-                  `create edge FriendOf from ${from.rid} to ${to.rid}`,
-                  (x)=>{console.log(x)},
-                  (x)=>{console.log(x)}
-                )
-    this.addEdgeBetweenMarkersToMap(from, to);
   }
 
   loadEdges(){
