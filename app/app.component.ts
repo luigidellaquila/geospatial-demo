@@ -81,7 +81,9 @@ export class AppComponent implements OnInit{
       coordinates: [this.lon, this.lat]
     }
 
-    var queryString = `insert into Person set name = '${this.personName}', location = ${JSON.stringify(location)}`;
+    var queryString = `insert into Person 
+                       set name = '${this.personName}', 
+                       location = ${JSON.stringify(location)}`;
 
     this.orient.command(queryString, (res)=>{
       let body = res.json();
@@ -91,7 +93,11 @@ export class AppComponent implements OnInit{
   }
 
   createEdge(from:any, to:any): void{
-    this.orient.command("create edge FriendOf from "+from.rid+" to "+to.rid, (x)=>{console.log(x)}, (x)=>{console.log(x)})
+    this.orient.command(
+                  `create edge FriendOf from ${from.rid} to ${to.rid}`,
+                  (x)=>{console.log(x)},
+                  (x)=>{console.log(x)}
+                )
     this.addEdgeBetweenMarkersToMap(from, to);
   }
 
