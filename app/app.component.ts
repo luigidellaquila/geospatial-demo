@@ -80,8 +80,9 @@ export class AppComponent implements OnInit{
       "@class": "OPoint",
       coordinates: [this.lon, this.lat]
     }
-    var queryString = "insert into Person set name = '"+this.personName+"', location = "+JSON.stringify(location);
-    console.log(queryString);
+
+    var queryString = `insert into Person set name = '${this.personName}', location = ${JSON.stringify(location)}`;
+
     this.orient.command(queryString, (res)=>{
       let body = res.json();
       let person = body.result[0];

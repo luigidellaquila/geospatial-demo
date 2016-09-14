@@ -15,11 +15,12 @@ export class OrientService {
     var headers = new Headers();
     headers.append("Authorization", "Basic " + btoa(this.username+":"+this.password));
 
-    this.http.post(url,
+    this.http.post(                 // HTTP POST
+      url,                          // the URL
       JSON.stringify({
-        "command": statement
+        "command": statement        // the SQL command
       }),
-      {headers: headers}
+      {headers: headers}            // the authentication data
     ).toPromise()
       .then(success)
       .catch(error);
