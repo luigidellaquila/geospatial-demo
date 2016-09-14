@@ -1,5 +1,4 @@
 import { Component, OnInit, NgZone} from '@angular/core';
-// import { Headers, Http } from '@angular/http';
 import { OrientService } from "./orient.service"
 
 import 'rxjs/add/operator/toPromise';
