@@ -3,37 +3,75 @@
   <div class="row">
     <div class="col-md-6">
       <div class="form-group">
-        <button class="btn" (click)="drawMap()">Redraw Map</button>
-        <button class="btn" (click)="loadPeople()">Display People</button>
-        <button class="btn" (click)="loadEdges()">Display Friendship</button>
-        <button class="btn" (click)="loadPOIs()">Display POIs</button>
-        <button class="btn" (click)="loadParks()">Display Parks</button>
+        <button class="btn btn-primary" (click)="drawMap()">
+          <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+          Redraw Map
+        </button>
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary" (click)="loadPeople()">
+          <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
+
+          Display People
+        </button>
+        <button class="btn btn-primary" (click)="loadEdges()">
+          <span class="glyphicon glyphicon glyphicon-link" aria-hidden="true"></span>
+          Display Friendship
+        </button>
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary" (click)="loadPOIs()">
+          <span class="glyphicon glyphicon glyphicon-pushpin" aria-hidden="true"></span>
+          Display POIs
+        </button>
+        <button class="btn btn-primary" (click)="loadParks()">
+          <span class="glyphicon glyphicon-tree-deciduous" aria-hidden="true"></span>
+          Display Parks
+        </button>
       </div>
 
+<!--
       <div class="form-group">
         <textarea [(ngModel)]="query" id="queryarea" class="form-control" rows="3"></textarea>
       </div>
       <div class="form-group">
         <button class="btn" (click)="executeQuery()">Execute Query</button>
       </div>
+-->
     </div>
     <div class="col-md-4">
-      <div class="form-group">
-        <label for="lat">Latitude</label>
-        <input type="text" id="lat" [(ngModel)]="lat" class="form-control"/>
-      </div>
-      <div class="form-group">
-        <label for="lon">Longitude</label>
-        <input type="text" id="lon" [(ngModel)]="lon" class="form-control"/>
-      </div>
-      <div class="form-group">
-        <label for="personName">Person Name</label>
-        <input type="text" id="personName" [(ngModel)]="personName" class="form-control"/>
-      </div>
+      <form class="form-horizontal">
+        <div class="form-group">
+          <label class="col-sm-4 control-label" for="lat">Latitude</label>
+          <div class="col-sm-8">
+            <input name="lat" type="text" id="lat" [(ngModel)]="lat" class="form-control"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-4 control-label" for="lon">Longitude</label>
+          <div class="col-sm-8">
+            <input name="lon" type="text" id="lon" [(ngModel)]="lon" class="form-control"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-4 control-label" for="personName">Person Name</label>
+          <div class="col-sm-8">
+            <input name="personName" type="text" id="personName" [(ngModel)]="personName" class="form-control"/>
+          </div>
+        </div>
+      </form>
     </div>
     <div class="col-md-2">
-      <button class="btn" (click)="createPerson()">Add Person</button>
-      <button class="btn" [class.btn-info]="addingEdge" (click)="startAddEdge()">Add Edge</button>
+      <button class="btn btn-primary btn-block" (click)="createPerson()">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+        <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
+        Add Person
+      </button>
+      <button class="btn btn-primary btn-block" [class.btn-info]="addingEdge" (click)="startAddEdge()">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+        <span class="glyphicon glyphicon-link" aria-hidden="true"></span>
+        Add Edge
+      </button>
     </div>
     <div class="col-md-12" id="map"></div>
 
